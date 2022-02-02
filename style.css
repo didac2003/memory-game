@@ -3,11 +3,17 @@
   flex-wrap: wrap;
   width: 400px;
   height: 300px;
-  margin-top:-50px;
+  margin-top:-80px;
 }
 
 #vida {
   position: relative;
   left: 300px;
+  bottom: 80px;
+}
+
+#botoHistorial {
+  position: relative;
+  left: 140px;
   bottom: 40px;
 }

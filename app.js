@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const optionTwoId = cardsChosenId[1]
     
     let vides = document.getElementById("vides")
+
     if(optionOneId == optionTwoId) {
       cards[optionOneId].setAttribute('src', 'images/blank.png')
       cards[optionTwoId].setAttribute('src', 'images/blank.png')
@@ -122,6 +123,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  let accions = document.getElementById("accions")
+  let botoHistorial = document.getElementById("botoHistorial") 
+  botoHistorial.addEventListener('click', () => {
+    accions.style.display = "block"
+  })
+  let contadorAccions = 0
   //flip your card
   function flipCard() {
     let cardId = this.getAttribute('data-id')
@@ -131,9 +138,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cardsChosen.length ===2) {
       setTimeout(checkForMatch, 500)
     }
+    contadorAccions++
+    
+    const taula = document.createElement('div')
+    const taulacontent = `
+    <p>Acció ${contadorAccions}: ${cardArray[cardId].name}</p>
+    `
+    taula.innerHTML = taulacontent
+    accions.append(taula)
+    console.log(taula);
   }
-
-
-
   createBoard()
 })
