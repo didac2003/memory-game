@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
       card.setAttribute('data-id', i)
       card.addEventListener('click', flipCard)
       grid.appendChild(card)
-      
       }
     }
 
@@ -83,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
       punts.style.fontSize = 20 + "px"
     })
     
-
     let cont = 4
   //check for matches
   function checkForMatch() {
@@ -114,7 +112,13 @@ document.addEventListener('DOMContentLoaded', () => {
       cont--
       vides.innerHTML = cont
     }
-    if (cont == 0) alert("Has perdut Dídac Gros!")
+    if (cont == 0){
+      alert("Has perdut Dídac Gros!")
+      alert("Reinicia el joc!")
+      cont = 4
+      vides.innerHTML = cont
+    }
+
     cardsChosen = []
     cardsChosenId = []
     resultDisplay.textContent = cardsWon.length
@@ -125,9 +129,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let accions = document.getElementById("accions")
   let botoHistorial = document.getElementById("botoHistorial") 
+
   botoHistorial.addEventListener('click', () => {
-    accions.style.display = "block"
+    if (accions.style.display == "block") accions.style.display = "none"
+    if (accions.style.display == "none") accions.style.display = "block"
   })
+  
   let contadorAccions = 0
   //flip your card
   function flipCard() {
@@ -135,18 +142,35 @@ document.addEventListener('DOMContentLoaded', () => {
     cardsChosen.push(cardArray[cardId].name)
     cardsChosenId.push(cardId)
     this.setAttribute('src', cardArray[cardId].img)
-    if (cardsChosen.length ===2) {
+    if (cardsChosen.length === 2) {
       setTimeout(checkForMatch, 500)
     }
+
     contadorAccions++
     
+    let imatge = document.getElementById("imatge")
+    let imatge1 = document.getElementById("imatge1")
+
+    if(contadorAccions % 2 != 0){
+      imatge.style.display = "block"
+      imatge.src = cardArray[cardId].img
+    }
+
+    if(contadorAccions % 2 == 0){
+      imatge1.style.display = "block"
+      imatge1.src = cardArray[cardId].img
+      setTimeout(borrarImatges, 1000)
+    }
+
+    function borrarImatges(){
+      imatge.style.display = "none"
+      imatge1.style.display = "none"
+    }
+    
     const taula = document.createElement('div')
-    const taulacontent = `
-    <p>Acció ${contadorAccions}: ${cardArray[cardId].name}</p>
-    `
+    const taulacontent = `<p>Acció ${contadorAccions}: ${cardArray[cardId].name}</p>`
     taula.innerHTML = taulacontent
     accions.append(taula)
-    console.log(taula);
   }
   createBoard()
 })

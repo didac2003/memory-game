@@ -1,3 +1,7 @@
+.complet {
+  margin: 20px;
+}
+
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -16,4 +20,8 @@
   position: relative;
   left: 140px;
   bottom: 40px;
+}
+
+#imatge, #imatge1{
+  position: absolute;
 }
