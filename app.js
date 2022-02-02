@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
   cardArray.sort(() => 0.5 - Math.random())
 
   const grid = document.querySelector('.grid')
+  
   const resultDisplay = document.querySelector('#result')
   let cardsChosen = []
   let cardsChosenId = []
@@ -67,8 +68,23 @@ document.addEventListener('DOMContentLoaded', () => {
       card.setAttribute('data-id', i)
       card.addEventListener('click', flipCard)
       grid.appendChild(card)
+      
+      }
     }
-  }
+
+    //Exercici2
+    let tabler = document.querySelector(".grid")
+    let punts = document.getElementById("result")
+    tabler.addEventListener('mouseover', ()=> {
+      punts.style.fontSize = 30 + "px"
+    })
+
+    tabler.addEventListener('mouseout', ()=> {
+      punts.style.fontSize = 20 + "px"
+    })
+    
+
+  
 
   //check for matches
   function checkForMatch() {
@@ -111,6 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(checkForMatch, 500)
     }
   }
+
+
 
   createBoard()
 })
