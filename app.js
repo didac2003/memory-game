@@ -75,27 +75,29 @@ document.addEventListener('DOMContentLoaded', () => {
     //Exercici2
     let tabler = document.querySelector(".grid")
     let punts = document.getElementById("result")
-    tabler.addEventListener('mouseover', ()=> {
+    tabler.addEventListener('mouseover', () => {
       punts.style.fontSize = 30 + "px"
     })
 
-    tabler.addEventListener('mouseout', ()=> {
+    tabler.addEventListener('mouseout', () => {
       punts.style.fontSize = 20 + "px"
     })
     
 
-  
-
+    let cont = 4
   //check for matches
   function checkForMatch() {
     const cards = document.querySelectorAll('img')
     const optionOneId = cardsChosenId[0]
     const optionTwoId = cardsChosenId[1]
     
+    let vides = document.getElementById("vides")
     if(optionOneId == optionTwoId) {
       cards[optionOneId].setAttribute('src', 'images/blank.png')
       cards[optionTwoId].setAttribute('src', 'images/blank.png')
       alert('You have clicked the same image!')
+      cont--
+      vides.innerHTML = cont
     }
     else if (cardsChosen[0] === cardsChosen[1]) {
       alert('You found a match')
@@ -108,7 +110,10 @@ document.addEventListener('DOMContentLoaded', () => {
       cards[optionOneId].setAttribute('src', 'images/blank.png')
       cards[optionTwoId].setAttribute('src', 'images/blank.png')
       alert('Sorry, try again')
+      cont--
+      vides.innerHTML = cont
     }
+    if (cont == 0) alert("Has perdut Dídac Gros!")
     cardsChosen = []
     cardsChosenId = []
     resultDisplay.textContent = cardsWon.length
